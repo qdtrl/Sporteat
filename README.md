@@ -11,7 +11,7 @@ Création de séance de sport afin d'avoir un suivi et des menus correspondant �
 ## Stack Technos :
 
 * Docker
-* PosgreSQL - Database
+* MongoDB - Database
 * Express - Redis - API
 * React - Javascript - Front
 * Nginx
@@ -19,10 +19,10 @@ Création de séance de sport afin d'avoir un suivi et des menus correspondant �
 
 ### JS Package:
 
-* React-redux
-* React-router-dom
-* Sass
-* pg
+* react-redux
+* react-router-dom
+* sass
+* mongoose
 * express
 * redis
 
