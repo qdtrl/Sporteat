@@ -1,0 +1,15 @@
+@import '../../../config/config.scss';
+
+section.workout_of_the_day {
+  color: $color-white;
+  p {
+    color: $color-white;
+    margin: 0.5rem;
+  }
+  h1 {
+    margin-top: 4rem;
+    color: $color-orange;
+    font-size: 35px;
+    line-height: normal;
+  }
+}

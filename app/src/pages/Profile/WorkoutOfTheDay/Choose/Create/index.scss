@@ -1,0 +1,27 @@
+@import '../../../../../config/config.scss';
+
+ul {
+  &.list {
+    list-style: none;
+    width: 100%;
+    &.equipements {
+      margin: 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      li.equipement {
+        width: 200px;
+        color: $color-white;
+        background-color: $color-orange;
+        padding: 1rem;
+        border-radius: 50px;
+        margin:  0.1rem 0.5rem;
+        &:hover {
+          background-color: $color-white;
+          color: $color-orange;
+        }
+      }
+    }
+  }
+}

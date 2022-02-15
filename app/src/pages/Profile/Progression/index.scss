@@ -1,0 +1,8 @@
+@import '../../../config/config.scss';
+
+section.chart div {
+  color: $color-orange;
+  &.chart-performances {
+    color: $color-orange;
+  }
+}

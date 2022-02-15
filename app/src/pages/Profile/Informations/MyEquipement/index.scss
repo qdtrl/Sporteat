@@ -1,0 +1,43 @@
+@import '../../../../config/config.scss';
+
+div.equipements {
+  display: flex;
+  justify-content: space-around;
+  ul.equipement-items {
+    width: 40%;
+    label {
+      color: $color-blue;
+      font-weight: 500;
+      font-size: 26px;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    text-decoration: none;
+    list-style-type: none;
+    text-align: center;
+    margin:0;
+    padding: 0;
+    li.equipement-item {
+      display : inline-block;
+      padding: 1rem;
+      cursor: pointer;
+      &:hover {
+          background-color: $color-blue;
+          border-radius: 50px;
+          color: $color-white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  div.equipements {
+    flex-direction: column;
+    align-items: center;
+    ul.equipement-items {
+      width: 100%;
+    }
+  }
+}

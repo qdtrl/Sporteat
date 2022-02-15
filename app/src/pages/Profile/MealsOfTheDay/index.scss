@@ -1,0 +1,28 @@
+@import '../../../config/config.scss';
+
+div.menu-of-the-day {
+  h1 {
+    color: $color-orange;
+  }
+  p {
+    color: $color-red;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  .menu {
+    h2, h3 {
+      color: $color-white;
+    }
+    span {
+      font-size: 15px;
+      color: $color-red;
+    }
+    .ingredients {
+      p {
+        color: $color-blue;
+      }
+    }
+  }
+}

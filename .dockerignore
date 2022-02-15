@@ -1,0 +1,8 @@
+./app/node_modules
+./api/node_modules
+./app/Dockerfile
+./api/Dockerfile
+.dockerignore
+.git
+.gitignore
+docker-compose*

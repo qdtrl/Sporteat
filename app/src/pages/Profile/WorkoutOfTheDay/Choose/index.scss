@@ -1,0 +1,32 @@
+@import '../../../../config/config.scss';
+
+nav.entrainement {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-color: rgba($color-orange, 0.5);
+  border-radius: 50px;
+  .link {
+    padding: 0.8rem;
+    width: 100%;
+    text-align: center;
+    border-radius: 50px;
+    &:hover {
+      color: $color-grey;
+    }
+    &.active {
+      background-color: $color-white;
+      color: $color-orange;
+    }
+  }
+}
+
+@media screen and (max-width: 810px) {
+  nav.entrainement {
+    flex-direction: column;
+    border-radius: 20px;
+    .link {
+      border-radius: 65px;
+    }
+  }
+}
