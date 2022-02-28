@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const redis = require('redis');
@@ -34,6 +35,9 @@ connectWithRetry();
 
 let redisClient = redis.createClient("127.0.0.1:6379");
 
+app.use(cors())
+app.use(express.json())
+
 app.enable("trust proxy");
 app.use(
   session({
@@ -47,8 +51,6 @@ app.use(
       maxAge: 30000 
     }
 }))
-
-app.use(express.json())
 
 app.get('/api', (req, res) => {
   console.log('hihi c cool');
