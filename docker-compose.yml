@@ -7,29 +7,28 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
-      - app
-
-  app:
-    deploy:
-      replicas: 8
-      restart_policy:
-        condition: any
-      update_config:
-        parallelism: 2
-        delay: 15s
-    build: ./app
-    image: qdt/app
-    volumes:
-      - .:/app
-      - /app/node_modules
-    env_file:
-      - ./.env
-    depends_on:
       - api
+  # app:
+  #   deploy:
+  #     replicas: 8
+  #     restart_policy:
+  #       condition: any
+  #     update_config:
+  #       parallelism: 2
+  #       delay: 15s
+  #   build: ./app
+  #   image: qdt/app
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+  #   env_file:
+  #     - ./.env
+  #   depends_on:
+  #     - api
 
   api:
     deploy:
-      replicas: 8
+      replicas: 1
       restart_policy:
         condition: any
       update_config:
@@ -52,13 +51,11 @@ services:
       - db
       
   db:
-    image: postgres
+    image: mongo
     env_file:
       - ./.env
     volumes:
-      - postgre-db:/data/db
-
-
+      - mongo-db:/data/db
 
 volumes:
-  postgre-db:
+  mongo-db:

@@ -14,8 +14,9 @@ const {
   SESSION_SECRET,
   REDIS_PORT } = require('./config/config');
 
-const postRouter = require('./routes/postRoutes')
-const userRouter = require('./routes/userRoutes')
+const userRouter = require('./routes/user.routes')
+const mealRouter = require('./routes/meal.routes')
+const ingredientRouter = require('./routes/ingredient.routes')
 
 const app = express();
 
@@ -52,13 +53,14 @@ app.use(
     }
 }))
 
+
 app.get('/api', (req, res) => {
-  console.log('hihi c cool');
-  res.send('<h2>Hi you There!</h2>')
+  res.send('<h1>SportEat API</h1>')
 });
 
-app.use('/api/posts', postRouter)
 app.use('/api/users', userRouter)
+app.use('/api/meals', mealRouter)
+app.use('/api/ingredients', ingredientRouter)
 
 const port = process.env.PORT || 3000;
 

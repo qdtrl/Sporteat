@@ -1,4 +1,4 @@
-const User = require("../models/userModel");
+const User = require("../models/user.model");
 const bcrypt = require('bcryptjs');
 
 exports.signIn = async (req, res, next) => {
@@ -7,7 +7,7 @@ exports.signIn = async (req, res, next) => {
   try {
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(404).json({
+      return res.status(402).json({
         status: 'fail',
         message: 'User not found'
       })
@@ -17,6 +17,7 @@ exports.signIn = async (req, res, next) => {
       req.session.user = user;
       res.status(201).json({
         status: 'connect',
+        token: "Bearer " + token,
         data: {
           user
         }

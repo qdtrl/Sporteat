@@ -1,16 +1,12 @@
-FROM node:15
+FROM node:14
 
-WORKDIR /api
+WORKDIR /
 
 COPY package.json .
 
 RUN npm install
 
 COPY . .
-
-ENV PORT 3000
-
-EXPOSE $PORT
 
 CMD ["npm", "run", "dev"]
 
