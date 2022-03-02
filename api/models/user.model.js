@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   trainerSexeChoice: {
     type: String,
-    required: [true, "User must have password"],
+    required: [false, "User must have sexe trainer"],
   },
   diet: {
     type: String,

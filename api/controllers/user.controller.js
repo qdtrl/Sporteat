@@ -2,13 +2,12 @@ const User = require("../models/user.model");
 const bcrypt = require('bcryptjs');
 
 exports.signIn = async (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   
   try {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(402).json({
-        status: 'fail',
         message: 'User not found'
       })
     }
@@ -16,44 +15,38 @@ exports.signIn = async (req, res, next) => {
     if (correctPassword) {
       req.session.user = user;
       res.status(201).json({
-        status: 'connect',
         token: "Bearer " + token,
-        data: {
-          user
-        }
+        user
       })
     } else {
       res.status(400).json({
-        status: `fail`,
         message: 'Incorrect password'
       })
     }
   } catch (e) {
     res.status(400).json({
-      status: `fail ${e}`,
+      message: `fail ${e}`,
     })
   }
 }
 
 exports.signUp = async (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
   try {
     const hashPassword = await bcrypt.hash(password, 12);
     const user = await User.create({
       username,
+      email,
       password: hashPassword
     });
 
-    // req.session.user = user;
+  // req.session.user = user;
     res.status(201).json({
-      status: 'success',
-      data: {
-        user
-      }
+      user
     })
   } catch (e) {
     res.status(400).json({
-      status: `fail ${e}`,
+      message: `fail ${e}`,
     })
   }
 }

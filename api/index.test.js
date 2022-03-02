@@ -3,48 +3,59 @@ const url = 'http://localhost:3000/api/';
 
 // USER TESTS
 
-const user = {
+const user1 = {
   email: 'test@test.com',
-  name: 'test',
+  username: 'test',
   password: 'test',
+}
+const user2 = {
+  email: 'test@test.com',
+  username: 'email',
+  password: 'test',
+}
+const user3 = {
+  email: 'name@test.com',
+  username: 'test12',
+  password: 'test12',
 }
 
 describe('Route Users', () => {
-  test('#1 - Sign In User', async () => {
+  test('#1 - Unsigned User', () => {
     axios
       .post(url + 'signin')
       .then(res => {
-        console.log(res);
         expect(res).toBeDefined()
-        
+        expect(res.status).toBe(402)
+        expect(res.message).toBe('User not found')
       })
   })
-})
-
-// INGREDIENTS TESTS
-describe('Route Ingredients', () => {
-  test('#1 - GET /ingredients', async () => {
+  test('#2 - Sign Up', () => {
     axios
-    .get(url + 'ingredients')
-    .then(res => {
-      console.log(res);
-      expect(res).toBeDefined()
-      expect(res.statusCode).toBe(202)
-      expect(res.body.message).toBe('message.user.nothing')
-    })
-  })
-})
-
-// MEAL TESTS
-describe('Route Meals', () => {
-  test('#1 - GET /users', async () => {
-    axios
-      .get(url + 'users')
+      .post(url + 'signup', user1)
       .then(res => {
-        console.log(res);
         expect(res).toBeDefined()
-        expect(res.statusCode).toBe(202)
-        expect(res.body.message).toBe('message.user.nothing')
+        expect(res.status).toBe(201)
+        expect(res.user.username).toBe(user.user)
+        expect(res.user.email).toBe(user.email)
       })
   })
+  test('#3 - Sign Up Same Email', () => {
+    axios
+      .post(url + 'signup', user2)
+      .then(res => {
+        expect(res).toBeDefined()
+        expect(res.status).toBe(400)
+        expect(res.message).toBe("fail MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: \"test@test.com\" }")
+      })
+  })
+  test('#4 - Sign In', () => {
+    axios
+      .post(url + 'signup', user1)
+      .then(res => {
+        expect(res).toBeDefined()
+        expect(res.status).toBe(400)
+        expect(res.message).toBe("fail MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: \"test@test.com\" }")
+      })
+  })
+
 })
