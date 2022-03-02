@@ -37,8 +37,7 @@ services:
     build: ./api
     image: qdt/api
     volumes:
-      - .:/api
-      - /api/node_modules
+      - ./api:/app
     env_file:
       - ./.env
     depends_on:
